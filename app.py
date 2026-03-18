@@ -42,3 +42,23 @@ def eliminar(nombre):
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=10000)
 
+    
+@app.route("/editar/<nombre>", methods=["GET", "POST"])
+def editar(nombre):
+    productos = cargar_datos()
+
+    if request.method == "POST":
+        nuevo_nombre = request.form["nombre"]
+        nuevo_precio = request.form["precio"]
+
+        for p in productos:
+            if p["nombre"] == nombre:
+                p["nombre"] = nuevo_nombre
+                p["precio"] = nuevo_precio
+
+        guardar_datos(productos)
+        return redirect("/")
+
+    # GET
+    producto = next((p for p in productos if p["nombre"] == nombre), None)
+    return render_template("editar.html", producto=producto)
