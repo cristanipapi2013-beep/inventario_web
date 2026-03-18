@@ -25,6 +25,7 @@
         <li>
             {{ p.nombre }} - ${{ p.precio }}
             <a href="/eliminar/{{ p.nombre }}">Eliminar</a>
+            <a href="/editar/{{ p.nombre }}">Editar</a>
         </li>
     {% endfor %}
 </ul>
