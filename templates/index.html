@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventario</title>
+</head>
+<link rel="stylesheet" href="/static/style.css">
+<body>
+
+<h1>Inventario</h1>
+
+<form action="/agregar" method="POST">
+    <input type="text" name="nombre" placeholder="Nombre" required>
+    <input type="number" name="precio" placeholder="Precio" required>
+    <button type="submit">Agregar</button>
+</form>
+
+<ul>
+    {% for p in productos %}
+        <li>
+            {{ p.nombre }} - ${{ p.precio }}
+            <a href="/eliminar/{{ p.nombre }}">Eliminar</a>
+        </li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>
